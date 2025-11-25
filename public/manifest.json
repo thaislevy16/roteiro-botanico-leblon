@@ -1,0 +1,40 @@
+{
+  "name": "Roteiro Botânico Digital do Leblon",
+  "short_name": "Roteiro Leblon",
+  "description": "Guia interativo da flora urbana do Leblon, Rio de Janeiro",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2d5a27",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/images/logo-app.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo-app.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo-app.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/logo-app.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["education", "nature", "travel"],
+  "lang": "pt-BR",
+  "scope": "/",
+  "prefer_related_applications": false
+}

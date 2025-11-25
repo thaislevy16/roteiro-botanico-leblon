@@ -1,0 +1,153 @@
+/* styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OpenLayers CSS */
+.ol-map {
+  min-width: 600px;
+  min-height: 500px;
+  margin: 50px;
+  height: 500px;
+  width: "100%";
+}
+
+.ol-control {
+  position: absolute;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.ol-full-screen {
+  top: .5em;
+  right: .5em;
+}
+
+/* Estilos personalizados para o mapa */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Controles de zoom */
+.ol-zoom {
+  top: 1em;
+  left: 1em;
+}
+
+.ol-zoom-in,
+.ol-zoom-out {
+  background-color: rgba(255,255,255,0.8);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  height: 30px;
+  width: 30px;
+  line-height: 1;
+  margin: 1px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.ol-zoom-in:hover,
+.ol-zoom-out:hover {
+  background-color: rgba(255,255,255,1);
+  border-color: #999;
+}
+
+/* Estilos para os marcadores */
+.ol-feature {
+  cursor: pointer;
+}
+
+.ol-feature:hover {
+  opacity: 0.8;
+}
+
+/* Remover outline dos marcadores Leaflet */
+/* styles/globals.css */
+.leaflet-container {
+  position: relative !important;
+  z-index: 0 !important;
+}
+
+@layer components {
+  /* BOTÕES “BOLHA” */
+  .btn-bubble {
+    @apply rounded-2xl px-5 py-3 font-medium shadow-lg bg-white transition-transform duration-200 ease-out;
+    color: #10B981;
+  }
+  .btn-bubble:hover {
+    @apply -translate-y-1 scale-105;
+  }
+  .btn-bubble:active {
+    @apply translate-y-1 scale-95;
+  }
+
+  /* CARDS DE CONTEÚDO */
+  .card-bubble {
+    @apply rounded-3xl p-6 bg-white shadow-lg;
+  }
+
+  /* BOTÕES DE SEÇÃO */
+  .btn-section {
+    @apply rounded-full px-4 py-1 transition-colors duration-150;
+    color: #10B981;
+  }
+  .btn-section:hover {
+    @apply text-white;
+    background-color: #10B981;
+  }
+}
+
+/* Scrollbar personalizada para navegação de seções */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+/* Animações suaves para os botões de navegação */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Bottom Navigation Mobile */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Garantir que o bottom nav seja sempre visível */
+@media (max-width: 640px) {
+  .bottom-nav-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+  }
+}
+
+/* Melhorar área de toque para mobile */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}

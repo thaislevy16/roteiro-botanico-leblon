@@ -1,0 +1,246 @@
+[
+  {
+    "Termo": "Dispersão",
+    "Definição": "É o processo pelo qual sementes ou frutos são transportados para longe da planta mãe. Pode ocorrer de várias formas:       Anemocoria: pelo vento.\r\nZoocoria: por animais.\r\nHidrocoria: pela água.\r\nAutocoria: pela própria planta, quando o fruto lança as sementes."
+  },
+  {
+    "Termo": "Polinização",
+    "Definição": "É o transporte do pólen até a parte feminina da flor. Pode ocorrer de diferentes formas:                                                                                                                                                                       Entomofilia: por insetos.\r\nOrnitofilia: por aves.\r\nQuiropterofilia: por morcegos.\r\nAnemofilia: pelo vento.\r\nHidrofília: pela água"
+  },
+  {
+    "Termo": "Espécie nativa",
+    "Definição": "Planta que ocorre naturalmente em determinada região, tendo evoluído ali ao longo do tempo e desempenhando papel essencial no equilíbrio ecológico local. As espécies nativas mantêm interações com a fauna, o solo e o clima, sendo fundamentais para a manutenção da biodiversidade e dos processos ecológicos originais."
+  },
+  {
+    "Termo": "Espécie exótica",
+    "Definição": "Planta introduzida fora de sua área natural de distribuição, geralmente por ação humana, seja intencional ou acidental. Muitas espécies exóticas são usadas na ornamentação urbana ou na agricultura, mas, quando sem controle, podem causar desequilíbrios ecológicos."
+  },
+  {
+    "Termo": "Espécie invasora",
+    "Definição": "Tipo de espécie exótica que se adapta rapidamente ao novo ambiente e se espalha de forma agressiva, competindo com as nativas por espaço, luz e nutrientes. Em contextos urbanos, pode alterar a composição vegetal e reduzir a diversidade local."
+  },
+  {
+    "Termo": "Espécie pioneira",
+    "Definição": "Planta capaz de colonizar áreas degradadas ou recém-abertas, como clareiras e margens de estradas. Possui crescimento rápido, tolera alta luminosidade e contribui para preparar o solo, criando condições para que outras espécies se estabeleçam."
+  },
+  {
+    "Termo": "Planta perene",
+    "Definição": "Espécie que completa vários ciclos de crescimento e reprodução ao longo dos anos, sem morrer após a floração. São comuns em florestas e praças, pois permanecem por longos períodos, contribuindo para a estabilidade e sombreamento do ambiente."
+  },
+  {
+    "Termo": "Planta monóica",
+    "Definição": "Planta que apresenta flores masculinas e femininas no mesmo indivíduo, o que facilita a reprodução. Apesar disso, a fecundação cruzada ainda pode ocorrer, promovendo maior variabilidade genética."
+  },
+  {
+    "Termo": "Planta dióica",
+    "Definição": "Espécie que possui indivíduos separados para flores masculinas e femininas. Essa separação impede a autopolinização e estimula a diversidade genética, exigindo a proximidade entre indivíduos de sexos diferentes."
+  },
+  {
+    "Termo": "Planta hermafrodita",
+    "Definição": "Espécie cujas flores contêm simultaneamente os órgãos reprodutores masculinos (estames) e femininos (pistilo). Essa característica aumenta as chances de reprodução, embora nem sempre resulte em autopolinização."
+  },
+  {
+    "Termo": "Planta monocárpica",
+    "Definição": "Espécie que floresce apenas uma vez durante sua vida e morre após produzir frutos e sementes. Esse comportamento é típico de algumas plantas tropicais e reforça estratégias evolutivas ligadas à reprodução em massa."
+  },
+  {
+    "Termo": "Autopolinização",
+    "Definição": "Processo em que o pólen de uma flor fecunda o próprio ovário da mesma planta. É um mecanismo que garante a reprodução mesmo na ausência de polinizadores, embora reduza a variabilidade genética."
+  },
+  {
+    "Termo": "Polinização generalista",
+    "Definição": "Ocorre quando uma flor é visitada por diferentes tipos de polinizadores, como abelhas, borboletas e aves. Essa estratégia aumenta as chances de fecundação e é comum em plantas adaptadas a ambientes urbanos."
+  },
+  {
+    "Termo": "Dicogamia protogínica",
+    "Definição": "Fenômeno em que o órgão feminino da flor amadurece antes do masculino, evitando a autopolinização e favorecendo a troca de pólen entre indivíduos distintos. É uma adaptação evolutiva para promover variabilidade genética."
+  },
+  {
+    "Termo": "Folha simples",
+    "Definição": "Folha formada por uma única lâmina presa ao caule por um pecíolo. É o tipo mais comum em espécies urbanas, sendo facilmente identificável pela ausência de subdivisões."
+  },
+  {
+    "Termo": "Folhas compostas",
+    "Definição": "Folhas divididas em pequenas partes chamadas folíolos, que se fixam a um eixo comum. Essa estrutura aumenta a área de captação de luz e melhora a resistência ao vento."
+  },
+  {
+    "Termo": "Folhas bipinadas",
+    "Definição": "Tipo de folha composta em que cada folíolo se divide novamente, formando subfolíolos. É uma adaptação comum em espécies tropicais e confere leveza à copa das árvores."
+  },
+  {
+    "Termo": "Folhas alternas",
+    "Definição": "Folhas que se distribuem ao longo do caule de maneira alternada, nunca lado a lado. Esse arranjo favorece a captação uniforme de luz solar."
+  },
+  {
+    "Termo": "Folhas digitadas",
+    "Definição": "Folhas compostas em que os folíolos partem de um mesmo ponto, lembrando os dedos de uma mão aberta. Essa forma é comum em plantas ornamentais e tropicais."
+  },
+  {
+    "Termo": "Folhas coriáceas",
+    "Definição": "Folhas de textura espessa e firme, semelhantes ao couro. Essa característica reduz a perda de água e aumenta a resistência à insolação intensa."
+  },
+  {
+    "Termo": "Textura coriácea",
+    "Definição": "Termo que descreve a espessura e rigidez das folhas coriáceas, comuns em ambientes ensolarados ou de baixa umidade."
+  },
+  {
+    "Termo": "Folhas compostas imparipinadas",
+    "Definição": "Folhas compostas que possuem número ímpar de folíolos, terminando em um folíolo central. Essa disposição proporciona equilíbrio estético e funcional."
+  },
+  {
+    "Termo": "Folha palmada",
+    "Definição": "Folha em que as nervuras partem de um único ponto, semelhante aos dedos de uma palma. Esse formato amplia a superfície de captação de luz."
+  },
+  {
+    "Termo": "Folíolos",
+    "Definição": "Pequenas lâminas que compõem uma folha composta. Cada folíolo tem aparência semelhante à de uma folha simples, mas todos compartilham o mesmo pecíolo principal."
+  },
+  {
+    "Termo": "Inflorescência",
+    "Definição": "Agrupamento de flores dispostas em um mesmo eixo. Essa estrutura facilita a polinização, atraindo mais polinizadores ao concentrar flores em um único ponto."
+  },
+  {
+    "Termo": "Inflorescência terminal",
+    "Definição": "Tipo de inflorescência que se forma na extremidade do caule ou dos ramos, marcando o fim do crescimento naquele ponto."
+  },
+  {
+    "Termo": "Inflorescência interfoliar",
+    "Definição": "Inflorescência que surge entre as folhas, distribuindo flores ao longo do caule e permitindo floração prolongada."
+  },
+  {
+    "Termo": "Inflorescências globosas",
+    "Definição": "Agrupamentos de flores em forma de pequenas esferas, que chamam a atenção de polinizadores visuais, como abelhas e beija-flores."
+  },
+  {
+    "Termo": "Panículas",
+    "Definição": "Inflorescências ramificadas em forma de cacho solto, com flores distribuídas em diferentes níveis. São comuns em árvores de grande porte."
+  },
+  {
+    "Termo": "Espigas",
+    "Definição": "Inflorescências alongadas em que as flores se fixam diretamente no eixo principal, sem pedúnculos. São típicas de gramíneas e palmeiras."
+  },
+  {
+    "Termo": "Racemos",
+    "Definição": "Inflorescências simples em que as flores são presas ao eixo principal por pequenos pedúnculos, abrindo em sequência de baixo para cima."
+  },
+  {
+    "Termo": "Estames",
+    "Definição": "Estruturas reprodutoras masculinas das flores que produzem o pólen. Geralmente compõem o androceu e têm papel central na fecundação."
+  },
+  {
+    "Termo": "Gimnosperma",
+    "Definição": "Grupo de plantas que produzem sementes nuas, sem frutos ao redor. São geralmente árvores de grande porte, como os pinheiros, e predominam em regiões frias e secas."
+  },
+  {
+    "Termo": "Angiosperma",
+    "Definição": "Grupo de plantas que produzem flores e frutos, com sementes protegidas por estruturas reprodutivas. Constituem a maior parte da flora terrestre atual."
+  },
+  {
+    "Termo": "Estróbilos",
+    "Definição": "Estruturas reprodutivas típicas das gimnospermas, formadas por escamas que abrigam os órgãos produtores de pólen ou sementes."
+  },
+  {
+    "Termo": "Fruto",
+    "Definição": "Estrutura desenvolvida a partir do ovário da flor após a fecundação. Sua função é proteger as sementes e auxiliar na dispersão, seja por animais, vento ou água."
+  },
+  {
+    "Termo": "Fruto deiscente",
+    "Definição": "Fruto seco que se abre espontaneamente ao amadurecer, liberando as sementes. Esse mecanismo garante maior dispersão natural."
+  },
+  {
+    "Termo": "Fruto carnoso",
+    "Definição": "Fruto suculento, com polpa rica em água e nutrientes, como o abacate ou o mamão. Geralmente é consumido por animais, que ajudam na dispersão das sementes."
+  },
+  {
+    "Termo": "Fruto cápsula",
+    "Definição": "Fruto seco que se abre ao amadurecer por meio de fendas, liberando várias sementes. É comum em espécies com alta taxa de reprodução."
+  },
+  {
+    "Termo": "Fruto globoso",
+    "Definição": "Fruto arredondado, de aparência lisa e geralmente carnosa. Essa forma facilita o manuseio por animais dispersores."
+  },
+  {
+    "Termo": "Fruto seco",
+    "Definição": "Fruto duro e sem polpa suculenta, característico de plantas adaptadas a ambientes abertos e secos."
+  },
+  {
+    "Termo": "Drupas",
+    "Definição": "Frutos com polpa carnosa e uma única semente envolta por uma camada dura. São comuns em árvores tropicais e têm grande importância alimentar."
+  },
+  {
+    "Termo": "Baga",
+    "Definição": "Fruto carnoso com várias sementes embutidas na polpa, como o tomate e a uva. É comum em plantas dispersas por aves."
+  },
+  {
+    "Termo": "Hesperídio",
+    "Definição": "Tipo de baga típica dos citros, como laranja e limão, com polpa dividida em gomos e casca resistente."
+  },
+  {
+    "Termo": "Aquênios",
+    "Definição": "Pequenos frutos secos com uma única semente, que não se abrem ao amadurecer. São típicos de espécies como o girassol."
+  },
+  {
+    "Termo": "Sicônios",
+    "Definição": "Estruturas carnosas que parecem um único fruto, mas que na verdade abrigam dezenas de flores e frutos minúsculos, como no figo."
+  },
+  {
+    "Termo": "Vagem",
+    "Definição": "Fruto seco e alongado que se abre em duas partes, liberando as sementes. É característico das leguminosas."
+  },
+  {
+    "Termo": "Vagem lenhosa",
+    "Definição": "Versão endurecida da vagem, presente em árvores de maior porte, onde o fruto torna-se rígido e resistente."
+  },
+  {
+    "Termo": "Cápsula lenhosa",
+    "Definição": "Fruto seco e duro que se abre apenas ao amadurecer, liberando as sementes no ambiente."
+  },
+  {
+    "Termo": "Sementes com asas membranosas",
+    "Definição": "Sementes leves que possuem extensões finas semelhantes a asas, permitindo que o vento as carregue a longas distâncias."
+  },
+  {
+    "Termo": "Tegumento",
+    "Definição": "Camada externa protetora da semente, responsável por preservar o embrião contra impactos e variações de umidade."
+  },
+  {
+    "Termo": "Cotilédones",
+    "Definição": "Primeiras folhas embrionárias da semente, responsáveis por armazenar e fornecer nutrientes ao embrião no início do desenvolvimento."
+  },
+  {
+    "Termo": "Albúmen",
+    "Definição": "Tecido nutritivo presente em muitas sementes, que fornece energia para o embrião durante a germinação."
+  },
+  {
+    "Termo": "Polpa",
+    "Definição": "Parte macia e geralmente comestível dos frutos, composta por células suculentas que armazenam açúcares e água."
+  },
+  {
+    "Termo": "Copa (árvore)",
+    "Definição": "Porção superior da árvore composta por galhos, folhas e flores, responsável pela captação de luz solar e pela troca gasosa com o ambiente."
+  },
+  {
+    "Termo": "Estipe",
+    "Definição": "Caule único e ereto, sem ramificações laterais, típico de palmeiras e algumas monocotiledôneas."
+  },
+  {
+    "Termo": "Propagação",
+    "Definição": "Processo de reprodução vegetal, que pode ocorrer naturalmente por sementes ou de forma artificial por mudas, estacas e enxertos."
+  },
+  {
+    "Termo": "Dispersão barocoria",
+    "Definição": "Tipo de dispersão em que o fruto ou a semente caem próximos à planta-mãe pela ação da gravidade, sendo comum em frutos pesados."
+  },
+  {
+    "Termo": "Painas",
+    "Definição": "Fibras finas e sedosas que envolvem as sementes de algumas espécies, ajudando na dispersão pelo vento e sendo utilizadas para enchimento têxtil."
+  },
+  {
+    "Termo": "Megasporófilos",
+    "Definição": "Estruturas femininas das gimnospermas que produzem os óvulos, correspondendo às escamas dos estróbilos."
+  },
+  {
+    "Termo": "Flor nectarífera",
+    "Definição": "Flor que produz néctar, uma substância adocicada que atrai polinizadores e facilita a transferência de pólen entre flores."
+  }
+]
