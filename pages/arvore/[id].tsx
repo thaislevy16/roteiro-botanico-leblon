@@ -394,24 +394,24 @@ export default function ArvorePage() {
         </main>
 
         {/* Rodapé */}
-        <footer className="bg-primary-bg px-4 py-2">
+        <footer className="bg-primary-bg px-4 py-2 pb-28 sm:pb-2">
           <div className="max-w-screen-md mx-auto">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {/* PUC-Rio Biologia */}
               <a 
                 href="https://www.biologia.puc-rio.br/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
               >
                 <img 
                   src="/images/logo-puc-rio.png" 
                   alt="Logo PUC-Rio" 
-                  className="w-16 h-16 object-contain"
+                  className="w-12 h-12 sm:w-16 sm:h-16 object-contain flex-shrink-0"
                 />
-                <div>
-                  <div className="text-sm font-medium text-highlight">PUC-Rio Biologia</div>
-                  <div className="text-xs text-gray-600">Site oficial Biologia PUC-Rio</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-xs sm:text-sm font-medium text-highlight truncate">PUC-Rio Biologia</div>
+                  <div className="text-[10px] sm:text-xs text-gray-600 line-clamp-2">Site oficial Biologia PUC-Rio</div>
                 </div>
               </a>
 
@@ -420,16 +420,16 @@ export default function ArvorePage() {
                 href="https://www.instagram.com/bio.pucrio/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
               >
                 <img 
                   src="/images/logo biopuc.png" 
                   alt="Logo Biologia PUC-Rio Instagram" 
-                  className="w-14 h-14 object-contain"
+                  className="w-12 h-12 sm:w-14 sm:h-14 object-contain flex-shrink-0"
                 />
-                <div>
-                  <div className="text-sm font-medium text-highlight">@bio.pucrio</div>
-                  <div className="text-xs text-gray-600">Instagram oficial Biologia PUC-Rio</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-xs sm:text-sm font-medium text-highlight truncate">@bio.pucrio</div>
+                  <div className="text-[10px] sm:text-xs text-gray-600 line-clamp-2">Instagram oficial Biologia PUC-Rio</div>
                 </div>
               </a>
 
@@ -438,16 +438,16 @@ export default function ArvorePage() {
                 href="https://www.instagram.com/restauracao_ecologica_pucrio/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
               >
                 <img 
                   src="/images/logo-insta.png" 
                   alt="Logo Instagram Restauração Ecológica" 
-                  className="w-8 h-8 object-contain"
+                  className="w-8 h-8 sm:w-8 sm:h-8 object-contain flex-shrink-0"
                 />
-                <div>
-                  <div className="text-sm font-medium text-highlight">@restauracao_ecologica_pucrio</div>
-                  <div className="text-xs text-gray-600">Instagram oficial Restauração Ecológica PUC-Rio</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-xs sm:text-sm font-medium text-highlight break-words">@restauracao_ecologica_pucrio</div>
+                  <div className="text-[10px] sm:text-xs text-gray-600 line-clamp-2">Instagram oficial Restauração Ecológica PUC-Rio</div>
                 </div>
               </a>
 
@@ -456,16 +456,16 @@ export default function ArvorePage() {
                 href="https://www.instagram.com/verdeleblon/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
               >
                 <img 
                   src="/images/logo verde leblon.png" 
                   alt="Logo Verde Leblon Instagram" 
-                  className="w-16 h-16 object-contain"
+                  className="w-12 h-12 sm:w-16 sm:h-16 object-contain flex-shrink-0"
                 />
-                <div>
-                  <div className="text-sm font-medium text-highlight">@verdeleblon</div>
-                  <div className="text-xs text-gray-600">Instagram oficial Verde Leblon</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-xs sm:text-sm font-medium text-highlight truncate">@verdeleblon</div>
+                  <div className="text-[10px] sm:text-xs text-gray-600 line-clamp-2">Instagram oficial Verde Leblon</div>
                 </div>
               </a>
             </div>
