@@ -116,15 +116,26 @@ export default function Home() {
             a.nome_cientifico === especie.nome_cientifico
           )
           const localizacoes = todasArvores.map(a => a.localizacao)
-          const trajetos = todasArvores.map(a => a.trajeto).filter((t): t is string => Boolean(t))
           
-          // Sempre filtrar apenas por "Trajeto curto" (Antero de Quental)
-          const temTrajetoCurto = trajetos.some(trajeto => 
-            trajeto.toLowerCase() === 'trajeto curto'
-          )
+          // Verificar se pelo menos uma árvore da espécie está no Trajeto curto
+          // Verifica tanto pelo campo "trajeto" quanto pelo "posicao_trajeto" que começa com "1."
+          const temTrajetoCurto = todasArvores.some(arvore => {
+            const trajeto = arvore.trajeto?.toLowerCase().trim()
+            const posicao = arvore.posicao_trajeto?.trim()
+            
+            return (
+              trajeto === 'trajeto curto' ||
+              (posicao && posicao.startsWith('1.'))
+            )
+          })
           
+          // Se não tem trajeto curto, não incluir na lista
+          if (!temTrajetoCurto) {
+            return false
+          }
+          
+          // Aplicar filtros de busca apenas se a espécie está no trajeto curto
           return (
-            temTrajetoCurto && // Apenas espécies do roteiro curto
             especie.nome.toLowerCase().includes(commonNameFilter.trim().toLowerCase()) &&
             (streetFilter.trim() === '' || localizacoes.some(loc => 
               loc.toLowerCase().includes(streetFilter.trim().toLowerCase())
