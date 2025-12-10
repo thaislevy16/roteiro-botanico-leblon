@@ -61,7 +61,8 @@ export default function Home() {
   const [familyFilter, setFamilyFilter] = useState('')
   const [scientificFilter, setScientificFilter] = useState('')
   const [glossaryFilter, setGlossaryFilter] = useState('')
-  const [roteiroFilter, setRoteiroFilter] = useState<string>('')
+  // Filtrar por padrão apenas espécies do Trajeto curto (Antero de Quental)
+  const [roteiroFilter, setRoteiroFilter] = useState<string>('Trajeto curto')
   const [isRoteiroDropdownOpen, setIsRoteiroDropdownOpen] = useState(false)
 
   useEffect(() => {

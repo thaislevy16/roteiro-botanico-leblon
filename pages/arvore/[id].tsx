@@ -133,14 +133,19 @@ export default function ArvorePage() {
           <nav
             className="
               sticky top-4 z-10
-              flex justify-center
               bg-white shadow-soft rounded-full
               px-2 py-2
               overflow-x-auto
               scrollbar-hide
+              -mx-2 sm:mx-0
             "
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none'
+            }}
           >
-            <div className="flex gap-0.5 min-w-max">
+            <div className="flex gap-1 sm:gap-0.5 min-w-max justify-start sm:justify-center">
               {sections.map(({ field, label, buttonLabel, color }) => {
                 const isActive = activeTab === field
                 const getColorClasses = (isActive: boolean) => {
@@ -157,13 +162,15 @@ export default function ArvorePage() {
                     className={`
                       flex items-center justify-center
                       transition-colors duration-200
+                      touch-manipulation
                       ${getColorClasses(isActive)}
                       h-10 rounded-full
-                      px-3 py-1
+                      px-4 sm:px-3 py-1
                       text-xs font-medium
                       whitespace-nowrap
                       flex-shrink-0
                       min-w-fit
+                      active:scale-95
                     `}
                     aria-label={label}
                   >

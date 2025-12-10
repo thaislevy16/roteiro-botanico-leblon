@@ -151,3 +151,16 @@
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* Scroll horizontal melhorado para navegação de seções */
+@media (max-width: 640px) {
+  nav[class*="overflow-x-auto"] {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scroll-padding: 0 1rem;
+  }
+  
+  nav[class*="overflow-x-auto"] > div {
+    scroll-snap-align: start;
+  }
+}
