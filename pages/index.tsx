@@ -138,16 +138,19 @@ export default function Home() {
           const localizacoes = todasArvores.map(a => a.localizacao)
           const trajetos = todasArvores.map(a => a.trajeto).filter((t): t is string => Boolean(t))
           
+          // Sempre filtrar apenas por "Trajeto curto" (Antero de Quental)
+          const temTrajetoCurto = trajetos.some(trajeto => 
+            trajeto.toLowerCase() === 'trajeto curto'
+          )
+          
           return (
+            temTrajetoCurto && // Apenas espécies do roteiro curto
             especie.nome.toLowerCase().includes(commonNameFilter.trim().toLowerCase()) &&
             (streetFilter.trim() === '' || localizacoes.some(loc => 
               loc.toLowerCase().includes(streetFilter.trim().toLowerCase())
             )) &&
             especie.familia_botanica.toLowerCase().includes(familyFilter.trim().toLowerCase()) &&
-            especie.nome_cientifico.toLowerCase().includes(scientificFilter.trim().toLowerCase()) &&
-            (roteiroFilter === '' || trajetos.some(trajeto => 
-              trajeto.toLowerCase() === roteiroFilter.toLowerCase()
-            ))
+            especie.nome_cientifico.toLowerCase().includes(scientificFilter.trim().toLowerCase())
           )
         })
       : especiesUnicas
@@ -443,17 +446,8 @@ export default function Home() {
                   onChange={e => setScientificFilter(e.target.value)}
                   className="rounded-full bg-white/30 backdrop-blur-md px-4 py-2 shadow-soft w-full focus:ring-2 focus:ring-highlight"
                 />
-                <div className="relative roteiro-dropdown-container">
-                  <button
-                    type="button"
-                    onClick={() => setIsRoteiroDropdownOpen(!isRoteiroDropdownOpen)}
-                    className="rounded-full bg-white/30 backdrop-blur-md px-4 py-2 pr-10 shadow-soft w-full focus:ring-2 focus:ring-highlight cursor-pointer text-left flex items-center gap-2"
-                  >
-                    {roteiroFilter === '' ? (
-                      <span className="text-gray-600">Filtrar por roteiro</span>
-                    ) : (
-                      <span className="flex items-center gap-2">
-                        {roteiroFilter === 'Trajeto curto' && (
+                {/* Filtro de roteiro removido - apenas espécies do Trajeto curto são mostradas */}
+                <div className="rounded-full bg-highlight/10 backdrop-blur-md px-4 py-2 shadow-soft w-full flex items-center gap-2 pointer-events-none">
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
                             <circle cx="12" cy="8" r="6" fill="#10b981"/>
                             <circle cx="9" cy="6" r="4" fill="#10b981"/>
@@ -464,122 +458,7 @@ export default function Home() {
                             <circle cx="10" cy="7" r="2" fill="white" opacity="0.3"/>
                             <circle cx="14" cy="7" r="1.5" fill="white" opacity="0.2"/>
                           </svg>
-                        )}
-                        {roteiroFilter === 'Trajeto médio' && (
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
-                            <circle cx="12" cy="8" r="6" fill="#f59e0b"/>
-                            <circle cx="9" cy="6" r="4" fill="#f59e0b"/>
-                            <circle cx="15" cy="6" r="4" fill="#f59e0b"/>
-                            <circle cx="12" cy="4" r="3" fill="#f59e0b"/>
-                            <rect x="10.5" y="14" width="3" height="8" rx="1.5" fill="#8B4513"/>
-                            <rect x="11" y="15" width="2" height="6" fill="#654321" opacity="0.7"/>
-                            <circle cx="10" cy="7" r="2" fill="white" opacity="0.3"/>
-                            <circle cx="14" cy="7" r="1.5" fill="white" opacity="0.2"/>
-                          </svg>
-                        )}
-                        {roteiroFilter === 'Trajeto longo' && (
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
-                            <circle cx="12" cy="8" r="6" fill="#ec4899"/>
-                            <circle cx="9" cy="6" r="4" fill="#ec4899"/>
-                            <circle cx="15" cy="6" r="4" fill="#ec4899"/>
-                            <circle cx="12" cy="4" r="3" fill="#ec4899"/>
-                            <rect x="10.5" y="14" width="3" height="8" rx="1.5" fill="#8B4513"/>
-                            <rect x="11" y="15" width="2" height="6" fill="#654321" opacity="0.7"/>
-                            <circle cx="10" cy="7" r="2" fill="white" opacity="0.3"/>
-                            <circle cx="14" cy="7" r="1.5" fill="white" opacity="0.2"/>
-                          </svg>
-                        )}
-                        <span>{roteiroFilter}</span>
-                      </span>
-                    )}
-                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                      <svg className={`w-5 h-5 text-gray-600 transition-transform ${isRoteiroDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </button>
-                  {isRoteiroDropdownOpen && (
-                    <div className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 overflow-hidden">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setRoteiroFilter('')
-                          setIsRoteiroDropdownOpen(false)
-                        }}
-                        className={`w-full px-4 py-3 text-left hover:bg-highlight/10 transition-colors flex items-center gap-3 ${
-                          roteiroFilter === '' ? 'bg-highlight/10' : ''
-                        }`}
-                      >
-                        <span className="text-gray-600">Todos os roteiros</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setRoteiroFilter('Trajeto curto')
-                          setIsRoteiroDropdownOpen(false)
-                        }}
-                        className={`w-full px-4 py-3 text-left hover:bg-highlight/10 transition-colors flex items-center gap-3 ${
-                          roteiroFilter === 'Trajeto curto' ? 'bg-highlight/10' : ''
-                        }`}
-                      >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
-                          <circle cx="12" cy="8" r="6" fill="#10b981"/>
-                          <circle cx="9" cy="6" r="4" fill="#10b981"/>
-                          <circle cx="15" cy="6" r="4" fill="#10b981"/>
-                          <circle cx="12" cy="4" r="3" fill="#10b981"/>
-                          <rect x="10.5" y="14" width="3" height="8" rx="1.5" fill="#8B4513"/>
-                          <rect x="11" y="15" width="2" height="6" fill="#654321" opacity="0.7"/>
-                          <circle cx="10" cy="7" r="2" fill="white" opacity="0.3"/>
-                          <circle cx="14" cy="7" r="1.5" fill="white" opacity="0.2"/>
-                        </svg>
-                        <span>Trajeto curto</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setRoteiroFilter('Trajeto médio')
-                          setIsRoteiroDropdownOpen(false)
-                        }}
-                        className={`w-full px-4 py-3 text-left hover:bg-highlight/10 transition-colors flex items-center gap-3 ${
-                          roteiroFilter === 'Trajeto médio' ? 'bg-highlight/10' : ''
-                        }`}
-                      >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
-                          <circle cx="12" cy="8" r="6" fill="#f59e0b"/>
-                          <circle cx="9" cy="6" r="4" fill="#f59e0b"/>
-                          <circle cx="15" cy="6" r="4" fill="#f59e0b"/>
-                          <circle cx="12" cy="4" r="3" fill="#f59e0b"/>
-                          <rect x="10.5" y="14" width="3" height="8" rx="1.5" fill="#8B4513"/>
-                          <rect x="11" y="15" width="2" height="6" fill="#654321" opacity="0.7"/>
-                          <circle cx="10" cy="7" r="2" fill="white" opacity="0.3"/>
-                          <circle cx="14" cy="7" r="1.5" fill="white" opacity="0.2"/>
-                        </svg>
-                        <span>Trajeto médio</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setRoteiroFilter('Trajeto longo')
-                          setIsRoteiroDropdownOpen(false)
-                        }}
-                        className={`w-full px-4 py-3 text-left hover:bg-highlight/10 transition-colors flex items-center gap-3 ${
-                          roteiroFilter === 'Trajeto longo' ? 'bg-highlight/10' : ''
-                        }`}
-                      >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
-                          <circle cx="12" cy="8" r="6" fill="#ec4899"/>
-                          <circle cx="9" cy="6" r="4" fill="#ec4899"/>
-                          <circle cx="15" cy="6" r="4" fill="#ec4899"/>
-                          <circle cx="12" cy="4" r="3" fill="#ec4899"/>
-                          <rect x="10.5" y="14" width="3" height="8" rx="1.5" fill="#8B4513"/>
-                          <rect x="11" y="15" width="2" height="6" fill="#654321" opacity="0.7"/>
-                          <circle cx="10" cy="7" r="2" fill="white" opacity="0.3"/>
-                          <circle cx="14" cy="7" r="1.5" fill="white" opacity="0.2"/>
-                        </svg>
-                        <span>Trajeto longo</span>
-                      </button>
-                    </div>
-                  )}
+                  <span className="text-sm text-gray-700">Trajeto curto - Praça Antero de Quental</span>
                 </div>
               </div>
 
@@ -673,8 +552,8 @@ export default function Home() {
          )}
          </main>
 
-        {/* Rodapé - não aparece no mapa */}
-        {activeTab !== 'map' && (
+         {/* Rodapé - não aparece no mapa */}
+         {activeTab !== 'map' && (
         <footer className="bg-primary-bg px-4 py-2 pb-28 sm:pb-2">
            <div className="max-w-screen-md mx-auto">
              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
