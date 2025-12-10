@@ -61,32 +61,12 @@ export default function Home() {
   const [familyFilter, setFamilyFilter] = useState('')
   const [scientificFilter, setScientificFilter] = useState('')
   const [glossaryFilter, setGlossaryFilter] = useState('')
-  // Filtrar por padrão apenas espécies do Trajeto curto (Antero de Quental)
-  const [roteiroFilter, setRoteiroFilter] = useState<string>('Trajeto curto')
-  const [isRoteiroDropdownOpen, setIsRoteiroDropdownOpen] = useState(false)
 
   useEffect(() => {
     if (['about', 'map', 'list', 'glossary'].includes(rawTab as string)) {
       setActiveTab(rawTab as Tab)
     }
   }, [rawTab])
-
-  // Fechar dropdown ao clicar fora
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement
-      if (isRoteiroDropdownOpen && !target.closest('.roteiro-dropdown-container')) {
-        setIsRoteiroDropdownOpen(false)
-      }
-    }
-
-    if (isRoteiroDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }
-  }, [isRoteiroDropdownOpen])
 
   // Função para normalizar nome científico (remover autores e normalizar)
   const normalizarNomeCientifico = (nome: string): string => {
