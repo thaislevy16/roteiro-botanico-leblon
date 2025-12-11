@@ -558,7 +558,7 @@ export default function Home() {
                  <img 
                    src="/images/logo-puc-rio.png" 
                    alt="Logo PUC-Rio" 
-                   className="w-14 h-14 sm:w-16 sm:h-16 object-contain flex-shrink-0"
+                   className="w-16 h-16 sm:w-20 sm:h-20 object-contain flex-shrink-0"
                  />
                  <div className="min-w-0 flex-1 flex flex-col justify-center">
                    <div className="text-base sm:text-lg font-medium text-highlight truncate">PUC-Rio Biologia</div>
