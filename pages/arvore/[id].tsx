@@ -131,7 +131,7 @@ function getCaracteristicasImages(arvore: Arvore) {
   return imagens;
 }
 
-// Componente para exibir uma imagem com legenda
+// Componente para exibir uma imagem com legenda (estilo igual à imagem dos colaboradores)
 function ImageWithCaption({ src, alt, caption }: { src: string; alt: string; caption: string }) {
   const [imgError, setImgError] = useState(false);
   
@@ -140,15 +140,18 @@ function ImageWithCaption({ src, alt, caption }: { src: string; alt: string; cap
   }
   
   return (
-    <div className="flex flex-col items-center mb-6">
-      <img
-        src={src}
-        alt={alt}
-        className="rounded-xl w-full max-w-md object-contain mb-2 shadow-md"
-        onError={() => setImgError(true)}
-        loading="lazy"
-      />
-      <p className="text-sm text-gray-600 text-center font-medium">{caption}</p>
+    <div className="mb-6">
+      <div className="rounded-3xl bg-white shadow-lg overflow-hidden p-0">
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-auto"
+          style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
+          onError={() => setImgError(true)}
+          loading="lazy"
+        />
+      </div>
+      <p className="text-sm text-gray-600 text-center font-medium mt-2">{caption}</p>
     </div>
   );
 }
