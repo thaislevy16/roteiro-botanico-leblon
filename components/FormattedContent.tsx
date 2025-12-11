@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MultipleImageDisplay from './MultipleImageDisplay';
 import { Arvore } from './types';
 
@@ -138,6 +138,111 @@ export default function FormattedContent({ content, type, className = '', color 
     }
   }
 
+  // Função para normalizar o nome da árvore para corresponder ao nome do arquivo
+  const normalizarNomeArquivo = (nome: string): string => {
+    if (!nome) return '';
+    
+    // Mapeamento de nomes específicos que podem ter variações
+    const mapeamentoNomes: { [key: string]: string } = {
+      'Aroreira-pimenteira': 'aroeira-pimenteira',
+      'Árvore-polvo': 'árvore-polvo',
+      'Árvore-da-borracha': 'árvore-da-borracha',
+      'Figueira-lira': 'figueira-lira',
+      'Palmeira-rabo-de-peixe': 'palmeira-rabo-de-peixe',
+      'Mogno-africano': 'mogno-africano',
+      'Coquinho-vermelho': 'coquinho-vermelho',
+      'Chichá-fedorento': 'chichá-fedorento',
+      'Ipê-amarelo': 'ipê-amarelo',
+      'Ipê-branco': 'ipê-branco',
+      'Ipê-rosa': 'ipê-rosa',
+      'Ipê-de-El-Salvador': 'ipê-de-el-salvador',
+      'Pau-brasil': 'pau-brasil',
+      'Pau-ferro': 'pau-ferro',
+      'Pau-formiga': 'pau-formiga',
+      'Abricó-da-praia': 'abricó-da-praia',
+      'Babosa-branca': 'babosa-branca',
+      'Canafistula': 'canafistula',
+      'Embaúba': 'embaúba',
+      'Flamboyant': 'flamboyant',
+      'Jaqueira': 'jaqueira',
+      'Jurema': 'jurema',
+      'Leucena': 'leucena',
+      'Limoeiro': 'limoeiro',
+      'Noni': 'noni',
+      'Oliveira': 'oliveira',
+      'Paineira': 'paineira',
+      'Sibipiruna': 'sibipiruna',
+      'Albizia': 'albizia',
+      'Cycas': 'cycas',
+    };
+    
+    // Verificar se há mapeamento específico (case-insensitive)
+    const nomeLower = nome.toLowerCase();
+    for (const [key, value] of Object.entries(mapeamentoNomes)) {
+      if (key.toLowerCase() === nomeLower) {
+        return value;
+      }
+    }
+    
+    // Normalização padrão: converter para minúsculas e manter acentos
+    return nome.toLowerCase().trim();
+  };
+
+  // Componente para exibir uma imagem com legenda
+  const ImageWithCaption = ({ src, alt, caption, onError }: { src: string; alt: string; caption: string; onError?: () => void }) => {
+    const [imgError, setImgError] = useState(false);
+    
+    const handleError = () => {
+      setImgError(true);
+      if (onError) onError();
+    };
+    
+    if (imgError) {
+      return null;
+    }
+    
+    return (
+      <div className="flex flex-col items-center">
+        <img
+          src={src}
+          alt={alt}
+          className="rounded-xl w-full max-w-sm object-contain mb-2 shadow-md"
+          onError={handleError}
+          loading="lazy"
+        />
+        <p className="text-sm text-gray-600 text-center font-medium">{caption}</p>
+      </div>
+    );
+  };
+
+  // Função para obter as imagens das características botânicas
+  const getCaracteristicasImages = () => {
+    if (!arvore) return [];
+    
+    const nomeArquivo = normalizarNomeArquivo(arvore.nome);
+    if (!nomeArquivo) return [];
+    
+    const tipos = [
+      { tipo: 'Folha', pasta: 'Folha', legenda: 'Folha' },
+      { tipo: 'Flor', pasta: 'Flor', legenda: 'Flor' },
+      { tipo: 'Fruto', pasta: 'Fruto', legenda: 'Fruto' },
+      { tipo: 'Semente', pasta: 'Semente', legenda: 'Semente' },
+    ];
+    
+    const imagens: Array<{ src: string; alt: string; caption: string }> = [];
+    
+    tipos.forEach(({ tipo, pasta, legenda }) => {
+      const src = `/images/arvores/Características/${pasta}/${nomeArquivo}.png`;
+      imagens.push({
+        src,
+        alt: `${legenda} da ${arvore.nome}`,
+        caption: legenda
+      });
+    });
+    
+    return imagens;
+  };
+
   const formatCharacteristics = (text: string) => {
     // Capitalizar primeira letra
     const capitalizedText = capitalizeFirstLetter(text);
@@ -146,64 +251,90 @@ export default function FormattedContent({ content, type, className = '', color 
     // Dividir em seções baseadas em palavras-chave
     const sections = capitalizedText.split(/(?=Árvore:|Folhas:|Flores:|Frutos:|Sementes:|Ciclo Reprodutivo:)/);
     
-    return sections.map((section, index) => {
-      const trimmedSection = section.trim();
-      if (!trimmedSection) return null;
-      
-      const sectionMatch = trimmedSection.match(/^(Árvore|Folhas|Flores|Frutos|Sementes|Ciclo Reprodutivo):\s*(.+)$/);
-      
-      if (sectionMatch) {
-        const [, sectionTitle, content] = sectionMatch;
-        
-        // Mapear títulos para chaves de imagem
-        const getImageKey = (title: string) => {
-          switch (title) {
-            case 'Árvore': return 'arvore';
-            case 'Folhas': return 'folha';
-            case 'Flores': return 'flor';
-            case 'Frutos': return 'fruto';
-            case 'Sementes': return 'semente';
-            default: return null;
+    const caracteristicasImages = getCaracteristicasImages();
+    
+    return (
+      <>
+        {sections.map((section, index) => {
+          const trimmedSection = section.trim();
+          if (!trimmedSection) return null;
+          
+          const sectionMatch = trimmedSection.match(/^(Árvore|Folhas|Flores|Frutos|Sementes|Ciclo Reprodutivo):\s*(.+)$/);
+          
+          if (sectionMatch) {
+            const [, sectionTitle, content] = sectionMatch;
+            
+            // Mapear títulos para chaves de imagem
+            const getImageKey = (title: string) => {
+              switch (title) {
+                case 'Árvore': return 'arvore';
+                case 'Folhas': return 'folha';
+                case 'Flores': return 'flor';
+                case 'Frutos': return 'fruto';
+                case 'Sementes': return 'semente';
+                default: return null;
+              }
+            };
+            
+            const imageKey = getImageKey(sectionTitle);
+            const images = arvore?.imagens?.[imageKey as keyof typeof arvore.imagens];
+            
+            
+            return (
+              <div key={index} className={`mb-6 p-4 ${colors.bg} rounded-lg border ${colors.border}`}>
+                <h4 className={`font-semibold ${colors.subtitle} mb-3 text-lg flex items-center`}>
+                  <span className="mr-2">
+                    {sectionTitle === 'Árvore' && '🌳'}
+                    {sectionTitle === 'Folhas' && '🍃'}
+                    {sectionTitle === 'Flores' && '🌸'}
+                    {sectionTitle === 'Frutos' && '🍎'}
+                    {sectionTitle === 'Sementes' && '🌰'}
+                    {sectionTitle === 'Ciclo Reprodutivo' && '🔄'}
+                  </span>
+                  {sectionTitle}
+                </h4>
+                <p className={`text-base leading-relaxed ${colors.body}`}>
+                  {content.trim()}
+                </p>
+                {images && images.length > 0 && (
+                  <MultipleImageDisplay 
+                    images={images} 
+                    alt={`${sectionTitle} da ${arvore?.nome}`}
+                    className="max-w-4xl mx-auto"
+                  />
+                )}
+              </div>
+            );
           }
-        };
-        
-        const imageKey = getImageKey(sectionTitle);
-        const images = arvore?.imagens?.[imageKey as keyof typeof arvore.imagens];
-        
-        
-        return (
-          <div key={index} className={`mb-6 p-4 ${colors.bg} rounded-lg border ${colors.border}`}>
-            <h4 className={`font-semibold ${colors.subtitle} mb-3 text-lg flex items-center`}>
-              <span className="mr-2">
-                {sectionTitle === 'Árvore' && '🌳'}
-                {sectionTitle === 'Folhas' && '🍃'}
-                {sectionTitle === 'Flores' && '🌸'}
-                {sectionTitle === 'Frutos' && '🍎'}
-                {sectionTitle === 'Sementes' && '🌰'}
-                {sectionTitle === 'Ciclo Reprodutivo' && '🔄'}
-              </span>
-              {sectionTitle}
-            </h4>
-            <p className={`text-base leading-relaxed ${colors.body}`}>
-              {content.trim()}
+          
+          return (
+            <p key={index} className={`text-base leading-relaxed ${colors.body} mb-3`}>
+              {trimmedSection}
             </p>
-            {images && images.length > 0 && (
-              <MultipleImageDisplay 
-                images={images} 
-                alt={`${sectionTitle} da ${arvore?.nome}`}
-                className="max-w-4xl mx-auto"
-              />
-            )}
+          );
+        })}
+        
+        {/* Seção de imagens das características botânicas */}
+        {caracteristicasImages.length > 0 && (
+          <div className={`mt-8 p-4 ${colors.bg} rounded-lg border ${colors.border}`}>
+            <h4 className={`font-semibold ${colors.subtitle} mb-4 text-lg flex items-center`}>
+              <span className="mr-2">📸</span>
+              Imagens das Características Botânicas
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {caracteristicasImages.map((img, idx) => (
+                <ImageWithCaption
+                  key={idx}
+                  src={img.src}
+                  alt={img.alt}
+                  caption={img.caption}
+                />
+              ))}
+            </div>
           </div>
-        );
-      }
-      
-      return (
-        <p key={index} className={`text-base leading-relaxed ${colors.body} mb-3`}>
-          {trimmedSection}
-        </p>
-      );
-    });
+        )}
+      </>
+    );
   };
 
   const formatVisitors = (text: string) => {
@@ -308,6 +439,102 @@ export default function FormattedContent({ content, type, className = '', color 
 
   // Se content é array, processar cada item separadamente
   if (Array.isArray(content)) {
+    if (type === 'caracteristicas') {
+      // Para características, processar todos os itens e adicionar imagens no final
+      const caracteristicasImages = getCaracteristicasImages();
+      const colors = getColorClasses(color);
+      
+      return (
+        <div className={className}>
+          {content.map((item, index) => {
+            const capitalizedText = capitalizeFirstLetter(item);
+            const sections = capitalizedText.split(/(?=Árvore:|Folhas:|Flores:|Frutos:|Sementes:|Ciclo Reprodutivo:)/);
+            
+            return (
+              <React.Fragment key={index}>
+                {sections.map((section, sectionIndex) => {
+                  const trimmedSection = section.trim();
+                  if (!trimmedSection) return null;
+                  
+                  const sectionMatch = trimmedSection.match(/^(Árvore|Folhas|Flores|Frutos|Sementes|Ciclo Reprodutivo):\s*(.+)$/);
+                  
+                  if (sectionMatch) {
+                    const [, sectionTitle, contentText] = sectionMatch;
+                    
+                    const getImageKey = (title: string) => {
+                      switch (title) {
+                        case 'Árvore': return 'arvore';
+                        case 'Folhas': return 'folha';
+                        case 'Flores': return 'flor';
+                        case 'Frutos': return 'fruto';
+                        case 'Sementes': return 'semente';
+                        default: return null;
+                      }
+                    };
+                    
+                    const imageKey = getImageKey(sectionTitle);
+                    const images = arvore?.imagens?.[imageKey as keyof typeof arvore.imagens];
+                    
+                    return (
+                      <div key={sectionIndex} className={`mb-6 p-4 ${colors.bg} rounded-lg border ${colors.border}`}>
+                        <h4 className={`font-semibold ${colors.subtitle} mb-3 text-lg flex items-center`}>
+                          <span className="mr-2">
+                            {sectionTitle === 'Árvore' && '🌳'}
+                            {sectionTitle === 'Folhas' && '🍃'}
+                            {sectionTitle === 'Flores' && '🌸'}
+                            {sectionTitle === 'Frutos' && '🍎'}
+                            {sectionTitle === 'Sementes' && '🌰'}
+                            {sectionTitle === 'Ciclo Reprodutivo' && '🔄'}
+                          </span>
+                          {sectionTitle}
+                        </h4>
+                        <p className={`text-base leading-relaxed ${colors.body}`}>
+                          {contentText.trim()}
+                        </p>
+                        {images && images.length > 0 && (
+                          <MultipleImageDisplay 
+                            images={images} 
+                            alt={`${sectionTitle} da ${arvore?.nome}`}
+                            className="max-w-4xl mx-auto"
+                          />
+                        )}
+                      </div>
+                    );
+                  }
+                  
+                  return (
+                    <p key={sectionIndex} className={`text-base leading-relaxed ${colors.body} mb-3`}>
+                      {trimmedSection}
+                    </p>
+                  );
+                })}
+              </React.Fragment>
+            );
+          })}
+          
+          {/* Seção de imagens das características botânicas */}
+          {caracteristicasImages.length > 0 && (
+            <div className={`mt-8 p-4 ${colors.bg} rounded-lg border ${colors.border}`}>
+              <h4 className={`font-semibold ${colors.subtitle} mb-4 text-lg flex items-center`}>
+                <span className="mr-2">📸</span>
+                Imagens das Características Botânicas
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {caracteristicasImages.map((img, idx) => (
+                  <ImageWithCaption
+                    key={idx}
+                    src={img.src}
+                    alt={img.alt}
+                    caption={img.caption}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+    
     return (
       <div className={className}>
         {content.map((item, index) => (
