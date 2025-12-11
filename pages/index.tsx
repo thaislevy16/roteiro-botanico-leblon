@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Arvore } from '../components/types'
 import data from '../data/arvores.json'
 import glossarioData from '../data/glossario.json'
@@ -271,11 +272,16 @@ export default function Home() {
 
               {/* Imagem dos Colaboradores */}
               <div className="card-bubble p-0 overflow-hidden">
-                <img 
-                  src="/images/Colaboradores.png" 
-                  alt="Colaboradores do projeto" 
-                  className="w-full h-auto object-cover"
-                />
+                <div className="relative w-full">
+                  <Image 
+                    src="/images/Colaboradores.png" 
+                    alt="Colaboradores do projeto" 
+                    width={1200}
+                    height={800}
+                    className="w-full h-auto object-cover"
+                    unoptimized
+                  />
+                </div>
               </div>
 
               {/* Informações Gerais */}
