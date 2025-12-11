@@ -271,11 +271,19 @@ export default function Home() {
               </div>
 
               {/* Imagem dos Colaboradores */}
-              <div className="card-bubble p-0 overflow-hidden">
-                <img 
+              <div className="rounded-3xl bg-white shadow-lg overflow-hidden">
+                <Image 
                   src="/images/Colaboradores.png" 
                   alt="Colaboradores do projeto" 
-                  className="w-full h-auto object-cover block"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto object-contain"
+                  unoptimized
+                  priority
+                  onError={(e) => {
+                    console.error('Erro ao carregar imagem Colaboradores.png');
+                    console.error('Evento:', e);
+                  }}
                 />
               </div>
 
