@@ -307,12 +307,9 @@ export default function ArvorePage() {
               // Sistema de cores padronizado
               return 'text-gray-800'
             }
-            
-            const caracteristicasImages = field === 'caracteristicas_botanicas' ? getCaracteristicasImages(arvore) : []
               
             return (
-              <React.Fragment key={field}>
-                <div className="space-y-3">
+              <div key={field} className="space-y-3">
                   <section
                     id={`${field}`}
                     className={`rounded-xl p-4 shadow-lg border-2 scroll-mt-20 hover:shadow-xl transition-all duration-300 ${getSectionClasses(color)}`}
@@ -497,23 +494,8 @@ export default function ArvorePage() {
                   ) : (
                     <TextFormatter text={Array.isArray(content) ? content.join(' ') : content} italicizeTerms={[arvore.nome_cientifico]} />
                   )}
-                  </section>
-                </div>
-                
-                {/* Imagens das características botânicas - flutuando entre características e visitantes */}
-                {field === 'caracteristicas_botanicas' && caracteristicasImages.length > 0 && (
-                  <div className="space-y-6">
-                    {caracteristicasImages.map((img, idx) => (
-                      <ImageWithCaption
-                        key={idx}
-                        src={img.src}
-                        alt={img.alt}
-                        caption={img.caption}
-                      />
-                    ))}
-                  </div>
-                )}
-              </React.Fragment>
+                </section>
+              </div>
             )
           })}
         </main>
