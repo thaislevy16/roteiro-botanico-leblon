@@ -272,16 +272,11 @@ export default function Home() {
 
               {/* Imagem dos Colaboradores */}
               <div className="card-bubble p-0 overflow-hidden">
-                <div className="relative w-full">
-                  <Image 
-                    src="/images/Colaboradores.png" 
-                    alt="Colaboradores do projeto" 
-                    width={1200}
-                    height={800}
-                    className="w-full h-auto object-cover"
-                    unoptimized
-                  />
-                </div>
+                <img 
+                  src="/images/Colaboradores.png" 
+                  alt="Colaboradores do projeto" 
+                  className="w-full h-auto object-cover block"
+                />
               </div>
 
               {/* Informações Gerais */}
