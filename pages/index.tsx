@@ -269,6 +269,15 @@ export default function Home() {
                 </p>
               </div>
 
+              {/* Imagem dos Colaboradores */}
+              <div className="card-bubble p-0 overflow-hidden">
+                <img 
+                  src="/images/Colaboradores.png" 
+                  alt="Colaboradores do projeto" 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+
               {/* Informações Gerais */}
               <div className="bg-highlight/10 rounded-lg p-3 mb-6">
                 <h2 className="text-lg sm:text-xl font-bold text-highlight mb-4">ℹ️ Informações Importantes</h2>
