@@ -251,90 +251,63 @@ export default function FormattedContent({ content, type, className = '', color 
     // Dividir em seções baseadas em palavras-chave
     const sections = capitalizedText.split(/(?=Árvore:|Folhas:|Flores:|Frutos:|Sementes:|Ciclo Reprodutivo:)/);
     
-    const caracteristicasImages = getCaracteristicasImages();
-    
-    return (
-      <>
-        {sections.map((section, index) => {
-          const trimmedSection = section.trim();
-          if (!trimmedSection) return null;
-          
-          const sectionMatch = trimmedSection.match(/^(Árvore|Folhas|Flores|Frutos|Sementes|Ciclo Reprodutivo):\s*(.+)$/);
-          
-          if (sectionMatch) {
-            const [, sectionTitle, content] = sectionMatch;
-            
-            // Mapear títulos para chaves de imagem
-            const getImageKey = (title: string) => {
-              switch (title) {
-                case 'Árvore': return 'arvore';
-                case 'Folhas': return 'folha';
-                case 'Flores': return 'flor';
-                case 'Frutos': return 'fruto';
-                case 'Sementes': return 'semente';
-                default: return null;
-              }
-            };
-            
-            const imageKey = getImageKey(sectionTitle);
-            const images = arvore?.imagens?.[imageKey as keyof typeof arvore.imagens];
-            
-            
-            return (
-              <div key={index} className={`mb-6 p-4 ${colors.bg} rounded-lg border ${colors.border}`}>
-                <h4 className={`font-semibold ${colors.subtitle} mb-3 text-lg flex items-center`}>
-                  <span className="mr-2">
-                    {sectionTitle === 'Árvore' && '🌳'}
-                    {sectionTitle === 'Folhas' && '🍃'}
-                    {sectionTitle === 'Flores' && '🌸'}
-                    {sectionTitle === 'Frutos' && '🍎'}
-                    {sectionTitle === 'Sementes' && '🌰'}
-                    {sectionTitle === 'Ciclo Reprodutivo' && '🔄'}
-                  </span>
-                  {sectionTitle}
-                </h4>
-                <p className={`text-base leading-relaxed ${colors.body}`}>
-                  {content.trim()}
-                </p>
-                {images && images.length > 0 && (
-                  <MultipleImageDisplay 
-                    images={images} 
-                    alt={`${sectionTitle} da ${arvore?.nome}`}
-                    className="max-w-4xl mx-auto"
-                  />
-                )}
-              </div>
-            );
-          }
-          
-          return (
-            <p key={index} className={`text-base leading-relaxed ${colors.body} mb-3`}>
-              {trimmedSection}
-            </p>
-          );
-        })}
+    return sections.map((section, index) => {
+      const trimmedSection = section.trim();
+      if (!trimmedSection) return null;
+      
+      const sectionMatch = trimmedSection.match(/^(Árvore|Folhas|Flores|Frutos|Sementes|Ciclo Reprodutivo):\s*(.+)$/);
+      
+      if (sectionMatch) {
+        const [, sectionTitle, content] = sectionMatch;
         
-        {/* Seção de imagens das características botânicas */}
-        {caracteristicasImages.length > 0 && (
-          <div className={`mt-8 p-4 ${colors.bg} rounded-lg border ${colors.border}`}>
-            <h4 className={`font-semibold ${colors.subtitle} mb-4 text-lg flex items-center`}>
-              <span className="mr-2">📸</span>
-              Imagens das Características Botânicas
+        // Mapear títulos para chaves de imagem
+        const getImageKey = (title: string) => {
+          switch (title) {
+            case 'Árvore': return 'arvore';
+            case 'Folhas': return 'folha';
+            case 'Flores': return 'flor';
+            case 'Frutos': return 'fruto';
+            case 'Sementes': return 'semente';
+            default: return null;
+          }
+        };
+        
+        const imageKey = getImageKey(sectionTitle);
+        const images = arvore?.imagens?.[imageKey as keyof typeof arvore.imagens];
+        
+        return (
+          <div key={index} className="mb-4">
+            <h4 className={`font-semibold ${colors.subtitle} mb-2 text-lg flex items-center`}>
+              <span className="mr-2">
+                {sectionTitle === 'Árvore' && '🌳'}
+                {sectionTitle === 'Folhas' && '🍃'}
+                {sectionTitle === 'Flores' && '🌸'}
+                {sectionTitle === 'Frutos' && '🍎'}
+                {sectionTitle === 'Sementes' && '🌰'}
+                {sectionTitle === 'Ciclo Reprodutivo' && '🔄'}
+              </span>
+              {sectionTitle}
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {caracteristicasImages.map((img, idx) => (
-                <ImageWithCaption
-                  key={idx}
-                  src={img.src}
-                  alt={img.alt}
-                  caption={img.caption}
-                />
-              ))}
-            </div>
+            <p className={`text-base leading-relaxed ${colors.body}`}>
+              {content.trim()}
+            </p>
+            {images && images.length > 0 && (
+              <MultipleImageDisplay 
+                images={images} 
+                alt={`${sectionTitle} da ${arvore?.nome}`}
+                className="max-w-4xl mx-auto"
+              />
+            )}
           </div>
-        )}
-      </>
-    );
+        );
+      }
+      
+      return (
+        <p key={index} className={`text-base leading-relaxed ${colors.body} mb-3`}>
+          {trimmedSection}
+        </p>
+      );
+    });
   };
 
   const formatVisitors = (text: string) => {
@@ -439,102 +412,6 @@ export default function FormattedContent({ content, type, className = '', color 
 
   // Se content é array, processar cada item separadamente
   if (Array.isArray(content)) {
-    if (type === 'caracteristicas') {
-      // Para características, processar todos os itens e adicionar imagens no final
-      const caracteristicasImages = getCaracteristicasImages();
-      const colors = getColorClasses(color);
-      
-      return (
-        <div className={className}>
-          {content.map((item, index) => {
-            const capitalizedText = capitalizeFirstLetter(item);
-            const sections = capitalizedText.split(/(?=Árvore:|Folhas:|Flores:|Frutos:|Sementes:|Ciclo Reprodutivo:)/);
-            
-            return (
-              <React.Fragment key={index}>
-                {sections.map((section, sectionIndex) => {
-                  const trimmedSection = section.trim();
-                  if (!trimmedSection) return null;
-                  
-                  const sectionMatch = trimmedSection.match(/^(Árvore|Folhas|Flores|Frutos|Sementes|Ciclo Reprodutivo):\s*(.+)$/);
-                  
-                  if (sectionMatch) {
-                    const [, sectionTitle, contentText] = sectionMatch;
-                    
-                    const getImageKey = (title: string) => {
-                      switch (title) {
-                        case 'Árvore': return 'arvore';
-                        case 'Folhas': return 'folha';
-                        case 'Flores': return 'flor';
-                        case 'Frutos': return 'fruto';
-                        case 'Sementes': return 'semente';
-                        default: return null;
-                      }
-                    };
-                    
-                    const imageKey = getImageKey(sectionTitle);
-                    const images = arvore?.imagens?.[imageKey as keyof typeof arvore.imagens];
-                    
-                    return (
-                      <div key={sectionIndex} className={`mb-6 p-4 ${colors.bg} rounded-lg border ${colors.border}`}>
-                        <h4 className={`font-semibold ${colors.subtitle} mb-3 text-lg flex items-center`}>
-                          <span className="mr-2">
-                            {sectionTitle === 'Árvore' && '🌳'}
-                            {sectionTitle === 'Folhas' && '🍃'}
-                            {sectionTitle === 'Flores' && '🌸'}
-                            {sectionTitle === 'Frutos' && '🍎'}
-                            {sectionTitle === 'Sementes' && '🌰'}
-                            {sectionTitle === 'Ciclo Reprodutivo' && '🔄'}
-                          </span>
-                          {sectionTitle}
-                        </h4>
-                        <p className={`text-base leading-relaxed ${colors.body}`}>
-                          {contentText.trim()}
-                        </p>
-                        {images && images.length > 0 && (
-                          <MultipleImageDisplay 
-                            images={images} 
-                            alt={`${sectionTitle} da ${arvore?.nome}`}
-                            className="max-w-4xl mx-auto"
-                          />
-                        )}
-                      </div>
-                    );
-                  }
-                  
-                  return (
-                    <p key={sectionIndex} className={`text-base leading-relaxed ${colors.body} mb-3`}>
-                      {trimmedSection}
-                    </p>
-                  );
-                })}
-              </React.Fragment>
-            );
-          })}
-          
-          {/* Seção de imagens das características botânicas */}
-          {caracteristicasImages.length > 0 && (
-            <div className={`mt-8 p-4 ${colors.bg} rounded-lg border ${colors.border}`}>
-              <h4 className={`font-semibold ${colors.subtitle} mb-4 text-lg flex items-center`}>
-                <span className="mr-2">📸</span>
-                Imagens das Características Botânicas
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {caracteristicasImages.map((img, idx) => (
-                  <ImageWithCaption
-                    key={idx}
-                    src={img.src}
-                    alt={img.alt}
-                    caption={img.caption}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    }
-    
     return (
       <div className={className}>
         {content.map((item, index) => (

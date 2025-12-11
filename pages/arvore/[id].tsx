@@ -56,6 +56,103 @@ function ImageWithFallback({ src, alt, className }: { src: string; alt: string; 
   )
 }
 
+// Função para normalizar o nome da árvore para corresponder ao nome do arquivo
+function normalizarNomeArquivo(nome: string): string {
+  if (!nome) return '';
+  
+  const mapeamentoNomes: { [key: string]: string } = {
+    'Aroreira-pimenteira': 'aroeira-pimenteira',
+    'Árvore-polvo': 'árvore-polvo',
+    'Árvore-da-borracha': 'árvore-da-borracha',
+    'Figueira-lira': 'figueira-lira',
+    'Palmeira-rabo-de-peixe': 'palmeira-rabo-de-peixe',
+    'Mogno-africano': 'mogno-africano',
+    'Coquinho-vermelho': 'coquinho-vermelho',
+    'Chichá-fedorento': 'chichá-fedorento',
+    'Ipê-amarelo': 'ipê-amarelo',
+    'Ipê-branco': 'ipê-branco',
+    'Ipê-rosa': 'ipê-rosa',
+    'Ipê-de-El-Salvador': 'ipê-de-el-salvador',
+    'Pau-brasil': 'pau-brasil',
+    'Pau-ferro': 'pau-ferro',
+    'Pau-formiga': 'pau-formiga',
+    'Abricó-da-praia': 'abricó-da-praia',
+    'Babosa-branca': 'babosa-branca',
+    'Canafistula': 'canafistula',
+    'Embaúba': 'embaúba',
+    'Flamboyant': 'flamboyant',
+    'Jaqueira': 'jaqueira',
+    'Jurema': 'jurema',
+    'Leucena': 'leucena',
+    'Limoeiro': 'limoeiro',
+    'Noni': 'noni',
+    'Oliveira': 'oliveira',
+    'Paineira': 'paineira',
+    'Sibipiruna': 'sibipiruna',
+    'Albizia': 'albizia',
+    'Cycas': 'cycas',
+  };
+  
+  const nomeLower = nome.toLowerCase();
+  for (const [key, value] of Object.entries(mapeamentoNomes)) {
+    if (key.toLowerCase() === nomeLower) {
+      return value;
+    }
+  }
+  
+  return nome.toLowerCase().trim();
+}
+
+// Função para obter as imagens das características botânicas
+function getCaracteristicasImages(arvore: Arvore) {
+  if (!arvore) return [];
+  
+  const nomeArquivo = normalizarNomeArquivo(arvore.nome);
+  if (!nomeArquivo) return [];
+  
+  const tipos = [
+    { tipo: 'Folha', pasta: 'Folha', legenda: 'Folha' },
+    { tipo: 'Flor', pasta: 'Flor', legenda: 'Flor' },
+    { tipo: 'Fruto', pasta: 'Fruto', legenda: 'Fruto' },
+    { tipo: 'Semente', pasta: 'Semente', legenda: 'Semente' },
+  ];
+  
+  const imagens: Array<{ src: string; alt: string; caption: string }> = [];
+  
+  tipos.forEach(({ tipo, pasta, legenda }) => {
+    const src = `/images/arvores/Características/${pasta}/${nomeArquivo}.png`;
+    imagens.push({
+      src,
+      alt: `${legenda} da ${arvore.nome}`,
+      caption: legenda
+    });
+  });
+  
+  return imagens;
+}
+
+// Componente para exibir uma imagem com legenda
+function ImageWithCaption({ src, alt, caption }: { src: string; alt: string; caption: string }) {
+  const [imgError, setImgError] = useState(false);
+  
+  if (imgError) {
+    return null;
+  }
+  
+  return (
+    <div className="flex flex-col items-center mb-6">
+      <img
+        src={src}
+        alt={alt}
+        className="rounded-xl w-full max-w-md object-contain mb-2 shadow-md"
+        onError={() => setImgError(true)}
+        loading="lazy"
+      />
+      <p className="text-sm text-gray-600 text-center font-medium">{caption}</p>
+    </div>
+  );
+}
+
 export default function ArvorePage() {
   const router = useRouter()
   const id = Array.isArray(router.query.id)
@@ -359,12 +456,35 @@ export default function ArvorePage() {
                       </div>
                     </>
                   ) : field === 'caracteristicas_botanicas' ? (
-                    <FormattedContent 
-                      content={content} 
-                      type="caracteristicas" 
-                      color={color}
-                      arvore={arvore}
-                    />
+                    <>
+                      <FormattedContent 
+                        content={content} 
+                        type="caracteristicas" 
+                        color={color}
+                        arvore={arvore}
+                      />
+                      {/* Seção de imagens das características botânicas - APÓS a seção de características */}
+                      {(() => {
+                        const caracteristicasImages = getCaracteristicasImages(arvore);
+                        if (caracteristicasImages.length === 0) return null;
+                        
+                        return (
+                          <div className="mt-6">
+                            <h3 className="font-semibold text-gray-700 mb-4 text-lg">Imagens das Características Botânicas</h3>
+                            <div className="space-y-6">
+                              {caracteristicasImages.map((img, idx) => (
+                                <ImageWithCaption
+                                  key={idx}
+                                  src={img.src}
+                                  alt={img.alt}
+                                  caption={img.caption}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })()}
+                    </>
                   ) : field === 'visitantes_botanicos' ? (
                     <FormattedContent 
                       content={content} 
