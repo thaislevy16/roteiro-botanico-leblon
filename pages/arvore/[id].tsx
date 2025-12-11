@@ -145,8 +145,8 @@ function ImageWithCaption({ src, alt, caption }: { src: string; alt: string; cap
         <img
           src={src}
           alt={alt}
-          className="w-full h-auto"
-          style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
+          className="w-full h-auto object-contain"
+          style={{ display: 'block', maxWidth: '100%', height: 'auto', maxHeight: '600px', width: 'auto', margin: '0 auto' }}
           onError={() => setImgError(true)}
           loading="lazy"
         />
