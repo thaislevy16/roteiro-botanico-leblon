@@ -271,18 +271,15 @@ export default function Home() {
               </div>
 
               {/* Imagem dos Colaboradores */}
-              <div className="rounded-3xl bg-white shadow-lg overflow-hidden">
-                <Image 
-                  src="/images/Colaboradores.png" 
+              <div className="rounded-3xl bg-white shadow-lg overflow-hidden p-0">
+                <img 
+                  src={`/images/Colaboradores.png?v=${Date.now()}`}
                   alt="Colaboradores do projeto" 
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto object-contain"
-                  unoptimized
-                  priority
+                  className="w-full h-auto"
+                  style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
                   onError={(e) => {
-                    console.error('Erro ao carregar imagem Colaboradores.png');
-                    console.error('Evento:', e);
+                    console.error('Erro ao carregar imagem:', e);
+                    (e.target as HTMLImageElement).style.border = '2px solid red';
                   }}
                 />
               </div>
