@@ -553,7 +553,7 @@ export default function Home() {
                  href="https://www.biologia.puc-rio.br/" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                 className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
                >
                  <img 
                    src="/images/logo-puc-rio.png" 
@@ -571,12 +571,12 @@ export default function Home() {
                  href="https://www.instagram.com/bio.pucrio/" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                 className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
                >
                  <img 
                    src="/images/logo biopuc.png" 
                    alt="Logo Biologia PUC-Rio Instagram" 
-                   className="w-10 h-10 sm:w-12 sm:h-12 object-contain flex-shrink-0"
+                   className="w-9 h-9 sm:w-11 sm:h-11 object-contain flex-shrink-0"
                  />
                  <div className="min-w-0 flex-1 flex flex-col justify-center">
                    <div className="text-base sm:text-lg font-medium text-highlight truncate">@bio.pucrio</div>
@@ -589,12 +589,12 @@ export default function Home() {
                  href="https://www.instagram.com/restauracao_ecologica_pucrio/" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                 className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
                >
                  <img 
                    src="/images/logo-insta.png" 
                    alt="Logo Instagram Restauração Ecológica" 
-                   className="w-10 h-10 sm:w-12 sm:h-12 object-contain flex-shrink-0"
+                   className="w-9 h-9 sm:w-11 sm:h-11 object-contain flex-shrink-0"
                  />
                  <div className="min-w-0 flex-1 flex flex-col justify-center">
                    <div className="text-base sm:text-lg font-medium text-highlight break-words">@restauracao_ecologica_pucrio</div>
@@ -607,12 +607,12 @@ export default function Home() {
                  href="https://www.instagram.com/verdeleblon/" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                 className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
                >
                  <img 
                    src="/images/logo verde leblon.png" 
                    alt="Logo Verde Leblon Instagram" 
-                   className="w-10 h-10 sm:w-12 sm:h-12 object-contain flex-shrink-0"
+                   className="w-9 h-9 sm:w-11 sm:h-11 object-contain flex-shrink-0"
                  />
                  <div className="min-w-0 flex-1 flex flex-col justify-center">
                    <div className="text-base sm:text-lg font-medium text-highlight truncate">@verdeleblon</div>
