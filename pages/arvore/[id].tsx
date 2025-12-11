@@ -459,35 +459,12 @@ export default function ArvorePage() {
                       </div>
                     </>
                   ) : field === 'caracteristicas_botanicas' ? (
-                    <>
-                      <FormattedContent 
-                        content={content} 
-                        type="caracteristicas" 
-                        color={color}
-                        arvore={arvore}
-                      />
-                      {/* Seção de imagens das características botânicas - APÓS a seção de características */}
-                      {(() => {
-                        const caracteristicasImages = getCaracteristicasImages(arvore);
-                        if (caracteristicasImages.length === 0) return null;
-                        
-                        return (
-                          <div className="mt-6">
-                            <h3 className="font-semibold text-gray-700 mb-4 text-lg">Imagens das Características Botânicas</h3>
-                            <div className="space-y-6">
-                              {caracteristicasImages.map((img, idx) => (
-                                <ImageWithCaption
-                                  key={idx}
-                                  src={img.src}
-                                  alt={img.alt}
-                                  caption={img.caption}
-                                />
-                              ))}
-                            </div>
-                          </div>
-                        );
-                      })()}
-                    </>
+                    <FormattedContent 
+                      content={content} 
+                      type="caracteristicas" 
+                      color={color}
+                      arvore={arvore}
+                    />
                   ) : field === 'visitantes_botanicos' ? (
                     <FormattedContent 
                       content={content} 
@@ -521,6 +498,35 @@ export default function ArvorePage() {
               </div>
             )
           })}
+          
+          {/* Seção separada de imagens das características botânicas */}
+          {(() => {
+            const caracteristicasImages = getCaracteristicasImages(arvore);
+            if (caracteristicasImages.length === 0) return null;
+            
+            return (
+              <div className="space-y-3">
+                <section
+                  className="rounded-xl p-4 shadow-lg border-2 scroll-mt-20 hover:shadow-xl transition-all duration-300 bg-lime/20 border-lime/40 shadow-lime/30"
+                >
+                  <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-semibold mb-4 flex items-center text-gray-800">
+                    <span className="text-2xl mr-3">📸</span>
+                    Imagens das Características Botânicas
+                  </h2>
+                  <div className="space-y-6">
+                    {caracteristicasImages.map((img, idx) => (
+                      <ImageWithCaption
+                        key={idx}
+                        src={img.src}
+                        alt={img.alt}
+                        caption={img.caption}
+                      />
+                    ))}
+                  </div>
+                </section>
+              </div>
+            );
+          })()}
         </main>
 
         {/* Rodapé */}
