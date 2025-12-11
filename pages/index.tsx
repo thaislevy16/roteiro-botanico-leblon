@@ -576,7 +576,7 @@ export default function Home() {
                  <img 
                    src="/images/logo biopuc.png" 
                    alt="Logo Biologia PUC-Rio Instagram" 
-                   className="w-8 h-8 sm:w-10 sm:h-10 object-contain flex-shrink-0"
+                   className="w-16 h-16 sm:w-20 sm:h-20 object-contain flex-shrink-0"
                  />
                  <div className="min-w-0 flex-1 flex flex-col justify-center">
                    <div className="text-base sm:text-lg font-medium text-highlight truncate">@bio.pucrio</div>
@@ -612,7 +612,7 @@ export default function Home() {
                  <img 
                    src="/images/logo verde leblon.png" 
                    alt="Logo Verde Leblon Instagram" 
-                   className="w-8 h-8 sm:w-10 sm:h-10 object-contain flex-shrink-0"
+                   className="w-16 h-16 sm:w-20 sm:h-20 object-contain flex-shrink-0"
                  />
                  <div className="min-w-0 flex-1 flex flex-col justify-center">
                    <div className="text-base sm:text-lg font-medium text-highlight truncate">@verdeleblon</div>
