@@ -1,7 +1,7 @@
 // pages/arvore/[id].tsx
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Arvore } from '../../components/types'
 import data from '../../data/arvores.json'
 import TextFormatter from '../../components/TextFormatter'
@@ -282,7 +282,7 @@ export default function ArvorePage() {
           </nav>
 
           {/* Sections and images */}
-          {sections.map(({ field, label, color, icon }) => {
+          {sections.map(({ field, label, color, icon }, index) => {
             const content = arvore[field] as string | string[]
             const isEmpty = field === 'taxonomia' 
               ? false // Taxonomia sempre tem conteúdo (nome científico)
@@ -307,22 +307,25 @@ export default function ArvorePage() {
               // Sistema de cores padronizado
               return 'text-gray-800'
             }
+            
+            const caracteristicasImages = field === 'caracteristicas_botanicas' ? getCaracteristicasImages(arvore) : []
               
             return (
-              <div key={field} className="space-y-3">
-                <section
-                  id={`${field}`}
-                  className={`rounded-xl p-4 shadow-lg border-2 scroll-mt-20 hover:shadow-xl transition-all duration-300 ${getSectionClasses(color)}`}
-                >
-                  <h2 className={`font-heading text-lg sm:text-xl md:text-2xl font-semibold mb-4 flex items-center ${getTitleClasses(color)}`}>
-                    <span className="text-2xl mr-3">{icon}</span>
-                    {label}
-                  </h2>
-                  {isEmpty ? (
-                    <div className="text-center py-8">
-                      <p className="text-base text-gray-500 italic">Informação será adicionada em breve.</p>
-                    </div>
-                  ) : field === 'taxonomia' ? (
+              <React.Fragment key={field}>
+                <div className="space-y-3">
+                  <section
+                    id={`${field}`}
+                    className={`rounded-xl p-4 shadow-lg border-2 scroll-mt-20 hover:shadow-xl transition-all duration-300 ${getSectionClasses(color)}`}
+                  >
+                    <h2 className={`font-heading text-lg sm:text-xl md:text-2xl font-semibold mb-4 flex items-center ${getTitleClasses(color)}`}>
+                      <span className="text-2xl mr-3">{icon}</span>
+                      {label}
+                    </h2>
+                    {isEmpty ? (
+                      <div className="text-center py-8">
+                        <p className="text-base text-gray-500 italic">Informação será adicionada em breve.</p>
+                      </div>
+                    ) : field === 'taxonomia' ? (
                     <div className="space-y-4">
                       <div>
                         <h3 className="font-semibold text-gray-700 mb-2 text-base">
@@ -494,25 +497,11 @@ export default function ArvorePage() {
                   ) : (
                     <TextFormatter text={Array.isArray(content) ? content.join(' ') : content} italicizeTerms={[arvore.nome_cientifico]} />
                   )}
-                </section>
-              </div>
-            )
-          })}
-          
-          {/* Seção separada de imagens das características botânicas */}
-          {(() => {
-            const caracteristicasImages = getCaracteristicasImages(arvore);
-            if (caracteristicasImages.length === 0) return null;
-            
-            return (
-              <div className="space-y-3">
-                <section
-                  className="rounded-xl p-4 shadow-lg border-2 scroll-mt-20 hover:shadow-xl transition-all duration-300 bg-lime/20 border-lime/40 shadow-lime/30"
-                >
-                  <h2 className="font-heading text-lg sm:text-xl md:text-2xl font-semibold mb-4 flex items-center text-gray-800">
-                    <span className="text-2xl mr-3">📸</span>
-                    Imagens das Características Botânicas
-                  </h2>
+                  </section>
+                </div>
+                
+                {/* Imagens das características botânicas - flutuando entre características e visitantes */}
+                {field === 'caracteristicas_botanicas' && caracteristicasImages.length > 0 && (
                   <div className="space-y-6">
                     {caracteristicasImages.map((img, idx) => (
                       <ImageWithCaption
@@ -523,10 +512,10 @@ export default function ArvorePage() {
                       />
                     ))}
                   </div>
-                </section>
-              </div>
-            );
-          })()}
+                )}
+              </React.Fragment>
+            )
+          })}
         </main>
 
         {/* Rodapé */}
